@@ -1,5 +1,4 @@
 import React, {useContext} from 'react'
-import Link from 'next/link'
 import SearchForm from '../components/SearchForm'
 import Navbar from '../components/Navbar'
 import Welcom from '../components/welcomeSection'
@@ -15,7 +14,6 @@ export default function Home () {
             </header>
             <main>
                 <SearchForm/>
-                <Link href='/restringido'>Otra pagina</Link>
             </main>
         </React.Fragment>
     )
