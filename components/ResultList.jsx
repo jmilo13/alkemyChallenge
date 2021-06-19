@@ -4,9 +4,10 @@ import axios from 'axios'
 function ResultItem (props) {
     const {id, image, name, biography } = props.information
     const handleClick = async () => {
+        const data = props.information
         console.log('agregado')
-        const res = await axios.get('https://alkemy-challenge-two.vercel.app/api/team')
-        console.log(res)
+        const req = await axios.put('https://alkemy-challenge-two.vercel.app/api/team', [data] )
+        console.log(req)
     }
     return (
         <section className='search-card' key={id}>

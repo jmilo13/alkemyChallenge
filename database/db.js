@@ -28,8 +28,16 @@ class Database {
       }
     })
   }
-postById(id) {
-  return console.log(id)
+postById(info) {
+  return new Promise(async (resolve, reject) => {
+    try {
+      const members = Object.values(allData).push(info)
+      await randomDelay()
+      resolve(members)
+    } catch (error) {
+      reject(error)
+    }
+  })
 }
 }
 
