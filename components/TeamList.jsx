@@ -1,13 +1,11 @@
-import React from 'react'
-
-function ResultItem (props) {
-    const {id, image, name, biography } = props.information
+function TeamItem (props) {
+    const {image, id, name} = props.information
     return (
         <section className='search-card' key={id}>
-            <img className='search-card__image' src={image.url} />
+            <img className='search-card__image' src={image} />
             <div className='search-card__details'>
                 <h2 className='search-card__details--name'>{name}</h2>
-                <p className='search-card__details--aligment'>{biography.alignment === 'bad'? 'Villano' : 'Héroe'}</p>
+                {/* <p className='search-card__details--aligment'>{biography.alignment === 'bad'? 'Villano' : 'Héroe'}</p> */}
             </div>
             <style jsx>
                 {`
@@ -52,6 +50,7 @@ function ResultItem (props) {
     )
 }
 
-export default function ResultList (props) {
-    return props.results.map(item =><ResultItem key={item.id} information={item}/>)
+export default function TeamList (props) {
+    const { data } = props
+    return data.map(item =><TeamItem key={item.id} information={item}/>)
 }

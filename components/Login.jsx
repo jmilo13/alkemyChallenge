@@ -1,7 +1,7 @@
 import React, {useContext, useState} from 'react';
 import { Formik } from 'formik';
 import axios from 'axios'
-import UserContext from '../context/UserContext'
+import UserContext from '@context/UserContext'
 import {Alert, Button , Form} from 'react-bootstrap'
  
 export default function Login () {

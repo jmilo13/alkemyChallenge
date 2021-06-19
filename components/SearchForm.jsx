@@ -1,7 +1,7 @@
 import React, { useState } from 'react'
 import axios from 'axios'
 import {Button , Form} from 'react-bootstrap';
-import ResultList from '../components/ResultList'
+import ResultList from '@components/ResultList'
 import 'bootstrap/dist/css/bootstrap.min.css';
 
 const BASE_API = 'https://superheroapi.com/api.php/'

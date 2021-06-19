@@ -1,5 +1,5 @@
 import App from 'next/app';
-import {UserContextProvider} from '../context/UserContext'
+import {UserContextProvider} from '@context/UserContext'
 import '../global.css'
 
 class MyApp extends App {
