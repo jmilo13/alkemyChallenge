@@ -1,10 +1,17 @@
 import React from 'react'
+import axios from 'axios'
 
 function ResultItem (props) {
     const {id, image, name, biography } = props.information
+    const handleClick = async () => {
+        console.log('agregado')
+        const res = await axios.get('https://alkemy-challenge-fabfyyw4w-jmilo13.vercel.app/api/team')
+        console.log(res)
+    }
     return (
         <section className='search-card' key={id}>
             <img className='search-card__image' src={image.url} />
+            <button type="button" onClick={handleClick}>Agregar</button>
             <div className='search-card__details'>
                 <h2 className='search-card__details--name'>{name}</h2>
                 <p className='search-card__details--aligment'>{biography.alignment === 'bad'? 'Villano' : 'Héroe'}</p>

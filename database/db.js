@@ -28,6 +28,9 @@ class Database {
       }
     })
   }
+postById(id) {
+  return console.log(id)
+}
 }
 
 const randomDelay = () =>
