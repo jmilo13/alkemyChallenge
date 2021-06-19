@@ -5,7 +5,7 @@ function ResultItem (props) {
     const {id, image, name, biography } = props.information
     const handleClick = async () => {
         console.log('agregado')
-        const res = await axios.get('https://alkemy-challenge-fabfyyw4w-jmilo13.vercel.app/api/team')
+        const res = await axios.get('https://alkemy-challenge-two.vercel.app/api/team')
         console.log(res)
     }
     return (

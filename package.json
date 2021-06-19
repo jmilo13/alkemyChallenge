@@ -16,7 +16,6 @@
   "dependencies": {
     "axios": "^0.21.1",
     "bootstrap": "^4.6.0",
-    "cors": "^2.8.5",
     "formik": "^2.2.9",
     "next": "^11.0.0",
     "react": "^17.0.2",
