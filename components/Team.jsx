@@ -1,25 +1,24 @@
-import React, { useState, useEffect } from 'react'
-import axios from 'axios'
+import React, { useContext, useEffect } from 'react'
 import List from './List'
 import Features from '@components/Features'
+import ItemContext from '@context/ItemContext'
 
-export default function Team () {
-    const [team, setTeam] = useState([])
+export default function Team() {
+    const context = useContext(ItemContext)
 
     useEffect(async () => {
-        const api = 'http://localhost:3000/api/team'
-        const response = await axios.get(api)
-        setTeam(response.data.data)
-    },[])
+        const local = JSON.parse(localStorage.getItem('team'))
+        context.setTeam(local)
+    }, [])
     return (
 
         <section className="team-section">
             <h1>Tu equipo</h1>
-            {team? <div className="team-section__container">
-                    <List data={team} component="team"/>
-                    <Features/>
-                    </div> 
-            : <h3>No tienes miembros en tu equipo, busca algunos y súmalos.</h3>
+            {context.team ? <div className="team-section__container">
+                <List data={context.team} component="team" />
+                <Features />
+            </div>
+                : <h3>No tienes miembros en tu equipo, busca algunos y súmalos.</h3>
             }
             <style jsx>
                 {`
@@ -35,5 +34,5 @@ export default function Team () {
                 `}
             </style>
         </section>
-    ) 
+    )
 }
