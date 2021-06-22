@@ -1,13 +1,15 @@
-import React, { useState } from 'react'
+import React, { useState, useContext } from 'react'
 import axios from 'axios'
 import {Button , Form} from 'react-bootstrap';
-import ResultList from '@components/ResultList'
+import List from '@components/List'
+import ItemContext from '@context/ItemContext';
 import 'bootstrap/dist/css/bootstrap.min.css';
 
 const BASE_API = 'https://superheroapi.com/api.php/'
 const API_KEY = '10224481852849965'
 
 export default function SearchForm () {
+    const context = useContext(ItemContext)
     const [heroName, setHeroName] = useState('superman')
     const [data, setData] = useState()
 
@@ -21,6 +23,7 @@ export default function SearchForm () {
         // const API = 'http://localhost:3000/data'
         const response = await axios.get(API)
         setData(response.data.results)
+        context.setTeam(false)
         console.log(response.data.results)
     }
     return (
@@ -32,7 +35,7 @@ export default function SearchForm () {
                 </form>
            {data&& 
                 <section className="results-section">
-                    <ResultList results={data}/>
+                    <List data={data}/>
                 </section>
             }
             <style jsx>

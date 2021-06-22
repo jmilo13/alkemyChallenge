@@ -12,6 +12,7 @@ export default function Login () {
       const response = await axios.post('http://challenge-react.alkemy.org/', values)
       localStorage.setItem('token', response.data.token);
       context.setToken(response.data.token)
+      localStorage.setItem('team', false);
     }catch(error){
       setLogError(true)
 

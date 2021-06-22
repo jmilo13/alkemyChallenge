@@ -2,7 +2,7 @@ import React, {useContext} from 'react'
 import UserContext from '@context/UserContext'
 
 
-export default function Navbar () {
+export default function Navbar ({children}) {
     const context = useContext(UserContext)
     const handleClick = () => {
         localStorage.removeItem('token')
@@ -14,6 +14,7 @@ export default function Navbar () {
             <nav className="header__nav">
                 <button className="header__login-button" onClick={handleClick}></button>
             </nav>
+            {children}
             <style jsx>
                 {`
                 .header {
