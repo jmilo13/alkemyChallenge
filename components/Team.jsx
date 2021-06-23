@@ -1,10 +1,11 @@
 import React, { useContext, useEffect } from 'react'
 import List from './List'
-import Features from '@components/Features'
-import ItemContext from '@context/ItemContext'
+import Skills from '@components/Skills'
+import TeamContext from '@context/TeamContext'
 
 export default function Team() {
-    const context = useContext(ItemContext)
+    const context = useContext(TeamContext)
+    console.log(context.team)
 
     useEffect(async () => {
         const local = JSON.parse(localStorage.getItem('team'))
@@ -14,9 +15,9 @@ export default function Team() {
 
         <section className="team-section">
             <h1>Tu equipo</h1>
-            {context.team ? <div className="team-section__container">
+            {context.team.length > 0? <div className="team-section__container">
                 <List data={context.team} component="team" />
-                <Features />
+                <Skills />
             </div>
                 : <h3>No tienes miembros en tu equipo, busca algunos y súmalos.</h3>
             }

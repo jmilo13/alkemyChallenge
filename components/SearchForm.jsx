@@ -2,14 +2,14 @@ import React, { useState, useContext, useEffect } from 'react'
 import axios from 'axios'
 import { Button, Form } from 'react-bootstrap';
 import List from '@components/List'
-import ItemContext from '@context/ItemContext';
+import TeamContext from '@context/TeamContext';
 import 'bootstrap/dist/css/bootstrap.min.css';
 
 const BASE_API = 'https://superheroapi.com/api.php/'
 const API_KEY = '10224481852849965'
 
 export default function SearchForm() {
-    const context = useContext(ItemContext)
+    const context = useContext(TeamContext)
     const [heroName, setHeroName] = useState('superman')
     const [data, setData] = useState()
     const handleChange = e => {

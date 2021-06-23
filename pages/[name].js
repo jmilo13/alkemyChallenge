@@ -1,9 +1,9 @@
 import React, { useContext } from 'react'
-import ItemContext from '@context/ItemContext'
+import TeamContext from '@context/TeamContext'
 import { Button } from 'react-bootstrap'
 
 export default function Details () {
-    const context = useContext(ItemContext)
+    const context = useContext(TeamContext)
     console.log(context.item)
 
     const { name, image, powerstats, biography, appearance, work} = context.item
@@ -24,12 +24,12 @@ export default function Details () {
             <div className="details-section__skills">
                 <h3>Habilidades</h3>
                 <ul>
-                    <li><span>⚔️</span><span>Combate:</span> {combat}</li>
-                    <li><span>⌛</span><span>Durabilidad:</span> {durability}</li>
-                    <li><span>🧠</span><span>Inteligencia:</span> {intelligence}</li>
-                    <li><span>🔋</span><span>Poder:</span> {power}</li>
-                    <li><span>💨</span><span>Velocidad:</span> {speed}</li>
-                    <li><span>💪🏽</span><span>Fuerza:</span> {strength}</li>
+                    <li><img src="/icons/swords.svg"/><span>Combate:</span> {combat}</li>
+                    <li><img src="/icons/shield.svg"/><span>Resistencia:</span> {durability}</li>
+                    <li><img src="/icons/thinking.svg"/><span>Inteligencia:</span> {intelligence}</li>
+                    <li><img src="/icons/power.svg"/><span>Poder:</span> {power}</li>
+                    <li><img src="/icons/speed.svg"/><span>Velocidad:</span> {speed}</li>
+                    <li><img src="/icons/strength.svg"/><span>Fuerza:</span> {strength}</li>
                 </ul>
             </div>
             <div className="details-section__features">
@@ -117,9 +117,8 @@ export default function Details () {
                 list-style: none;
                 padding: 0;
             }
-            .details-section__skills span{
-                display: inline-block;
-                min-width: 25px;
+            .details-section__skills img{
+                max-width: 25px;
             }
             @media (min-width: 530px) {
             .details-section__skills{

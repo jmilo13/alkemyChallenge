@@ -1,6 +1,6 @@
 import App from 'next/app';
 import {UserContextProvider} from '@context/UserContext'
-import { ItemContextProvider } from '@context/ItemContext';
+import { TeamContextProvider } from '@context/TeamContext';
 import Layout from '@components/Layout';
 import '../global.css'
 
@@ -9,11 +9,11 @@ class MyApp extends App {
     const { Component, pageProps } = this.props;
     return (
       <UserContextProvider>
-        <ItemContextProvider>
+        <TeamContextProvider>
           <Layout>
             <Component {...pageProps} />
           </Layout>
-        </ItemContextProvider>
+        </TeamContextProvider>
       </UserContextProvider>
     );
   }

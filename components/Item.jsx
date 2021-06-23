@@ -1,23 +1,24 @@
 import React, { useContext } from "react"
 import { useRouter } from 'next/router'
-import { add, remove } from "./plugins/MakeTeam"
 
-import ItemContext from '@context/ItemContext'
+import TeamContext from '@context/TeamContext'
 
 export default function Item(props) {
-    const context = useContext(ItemContext)
+    const context = useContext(TeamContext)
     const router = useRouter()
     const { information, component } = props
     const isTeam = component === 'team' ? true : false
     const { image, id, name, biography } = information
 
     console.log(context.team);
-    const handleImage = () => {
+    const handleElement = () => {
+        console.log('caja')
         context.setItem(information)
         isTeam ? context.setTeam(true) : context.setTeam(false)
         router.push(`/${name}`)
     }
-    const handleClick = () => {
+    const handleClick = (e) => {
+        console.log('boton')
         if (isTeam) {
             const local = JSON.parse(localStorage.getItem('team'))
             const data = local.filter((element) => element.id !== id)
@@ -37,10 +38,11 @@ export default function Item(props) {
             context.setTeam(data)
             console.log(JSON.parse(localStorage.getItem('team')))
         }
+        e.stopPropagation()
     }
     return (
-        <section className='card' key={id}>
-            <img className='card__image' src={image.url} onClick={handleImage} />
+        <section className='card' key={id} onClick={handleElement}>
+            <img className='card__image' src={image.url}/>
             <button onClick={handleClick} type="button" className={isTeam ? "card__button remove" : "card__button add"}></button>
             <div className='card__details'>
                 <h2 className='card__details--name'>{name}</h2>
