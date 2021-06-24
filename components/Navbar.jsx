@@ -10,7 +10,9 @@ export default function Navbar ({children}) {
     }
     return (
         <header className='header'>
-            <div className="header__logo"></div>
+            <div className="header__logo">
+                <img src="./images/logo.png" />
+            </div>
             <nav className="header__nav">
                 <button className="header__login-button" onClick={handleClick}></button>
             </nav>
@@ -37,8 +39,12 @@ export default function Navbar ({children}) {
                     color: #fff;
                     font-size: 2.5rem;
                     width: fit-content;
+                    padding: 0.3rem;
                     align-items: flex-start;
                     justify-content: center;
+                }
+                .header__logo img{
+                    width: 100%;
                 }
                 .header__login-button {
                     position: relative;

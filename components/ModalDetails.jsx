@@ -1,24 +1,21 @@
 import React, { useContext } from 'react'
 import TeamContext from '@context/TeamContext'
 import { Button } from 'react-bootstrap'
-// import ButtomTeamContainer from '@components/ButtonTeamContainer'
 
-export default function Details () {
+export default function Details (props) {
     const context = useContext(TeamContext)
-    console.log(context.item)
+    const { isOn } = props
 
-    const { id, name, image, powerstats, biography, appearance, work} = context.item
+    const { name, image, powerstats, biography, appearance, work} = context.item
     const { alignment, aliases} = biography
     const { combat, durability, intelligence, power, speed, strength } = powerstats
     const physical = Object.values(appearance)
-    if(context.item)
-    return ( 
+    const element =  ( 
     <section className="details-section">
         <div className="details-section__container">
             <div className="details-section__header">
                 <h2 className="details-section__name">{name}</h2>
                 <p className="details-section__alignment">{alignment === 'bad'? 'Villano' : 'Héroe'}</p>
-                {/* <ButtomTeamContainer component='team' id={id}/> */}
                 {context.team===true ? <Button variant="danger">Eliminar</Button> :
                 <Button variant="primary">Agregar</Button>}
             </div>
@@ -144,4 +141,6 @@ export default function Details () {
         </style>
   </section>
     )
+    const lugar = document.querySelector('#modal-root')
+    return isOn === true && ReactDOM.createPortal(element, lugar)
 }

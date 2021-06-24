@@ -10,8 +10,8 @@ export default function Home() {
         return (
             <React.Fragment>
                 <main>
-                    <Team />
                     <SearchForm />
+                    <Team />
                 </main>
             </React.Fragment>
         )

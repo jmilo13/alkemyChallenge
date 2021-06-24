@@ -1,3 +1,6 @@
+:root {
+  --principal: #2e4053;
+}
 * {
   margin: 0;
   padding: 0;
