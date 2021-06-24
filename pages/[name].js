@@ -1,7 +1,7 @@
-import React, { useContext } from 'react'
+import React, { useContext  } from 'react'
 import TeamContext from '@context/TeamContext'
 import { Button } from 'react-bootstrap'
-// import ButtomTeamContainer from '@components/ButtonTeamContainer'
+import ButtomTeamContainer from '@components/ButtonTeamContainer'
 
 export default function Details () {
     const context = useContext(TeamContext)
@@ -18,7 +18,7 @@ export default function Details () {
             <div className="details-section__header">
                 <h2 className="details-section__name">{name}</h2>
                 <p className="details-section__alignment">{alignment === 'bad'? 'Villano' : 'Héroe'}</p>
-                {/* <ButtomTeamContainer component='team' id={id}/> */}
+                <ButtomTeamContainer component='team' id={id} data={context.item} type={context.team===true ? 'remove' : 'add'}/>
                 {context.team===true ? <Button variant="danger">Eliminar</Button> :
                 <Button variant="primary">Agregar</Button>}
             </div>

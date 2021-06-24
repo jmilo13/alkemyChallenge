@@ -1,7 +1,7 @@
 import React, { useContext } from "react"
 import { useRouter } from 'next/router'
 import TeamContext from '@context/TeamContext'
-// import ButtomTeamContainer from "./ButtonTeamContainer"
+import ButtomTeamContainer from "./ButtonTeamContainer"
 
 export default function Item(props) {
     const context = useContext(TeamContext)
@@ -18,34 +18,34 @@ export default function Item(props) {
         console.log('click en imagen')
         router.push(`/${name}`)
     }
-    const handleClick = (e) => {
-        console.log('boton')
-        if (isTeam) {
-            const local = JSON.parse(localStorage.getItem('team'))
-            const data = local.filter((element) => element.id !== id)
-            localStorage.setItem('team', JSON.stringify(data))
-            context.setTeam(data)
-        } else {
-            let data = []
-            const local = JSON.parse(localStorage.getItem('team'))
-            if (local) {
-                data = local
-                data.push(information)
-            } else {
-                data[0] = information
-            }
-            localStorage.setItem('team', JSON.stringify(data))
-            context.setTeam(data)
-        }
-        e.stopPropagation()
-    }
+    // const handleClick = (e) => {
+    //     console.log('boton')
+    //     if (isTeam) {
+    //         const local = JSON.parse(localStorage.getItem('team'))
+    //         const data = local.filter((element) => element.id !== id)
+    //         localStorage.setItem('team', JSON.stringify(data))
+    //         context.setTeam(data)
+    //     } else {
+    //         let data = []
+    //         const local = JSON.parse(localStorage.getItem('team'))
+    //         if (local) {
+    //             data = local
+    //             data.push(information)
+    //         } else {
+    //             data[0] = information
+    //         }
+    //         localStorage.setItem('team', JSON.stringify(data))
+    //         context.setTeam(data)
+    //     }
+    //     e.stopPropagation()
+    // }
     return (
         <section className='card' key={id} onClick={handleElement}>
             <img className='card__image' src={image.url}/>
-            {/* <div className='card__button-container'>
-                <ButtomTeamContainer component="team" id={id} type={'remove'} data={information}/>
-            </div> */}
-            <button onClick={handleClick} type="button" className={isTeam ? "card__button remove" : "card__button add"}></button>
+            <div className='card__button-container'>
+                <ButtomTeamContainer component="team" id={id} type={isTeam ? 'remove' : 'add'} data={information}/>
+            </div>
+            {/* <button onClick={handleClick} type="button" className={isTeam ? "card__button remove" : "card__button add"}></button> */}
             <div className='card__details'>
                 <h2 className='card__details--name'>{name}</h2>
                 <p className='card__details--aligment'>{biography.alignment === 'bad' ? 'Villano' : 'Héroe'}</p>
@@ -90,10 +90,10 @@ export default function Item(props) {
                 .card__button-container{
                     position:absolute;
                     bottom: 0.5rem;
-                    left: 0.5rem;
+                    right: 0.5rem;
                     z-index: 1
                 }
-                .card__button{
+                {/* .card__button{
                     position:absolute;
                     bottom: 0.5rem;
                     right: 0.5rem;
@@ -107,7 +107,7 @@ export default function Item(props) {
                 }
                 .add{
                     background: url('/icons/add.svg') center/cover no-repeat
-                }
+                } */}
                 `}
             </style>
         </section>
