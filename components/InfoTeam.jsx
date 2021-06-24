@@ -13,7 +13,7 @@ export default function InfoTeam () {
             const total = ((context.team.map((element) => parseInt(element[type][skill][value]))).reduce((acumulator, element) => acumulator + element))/context.team.length 
             return total.toFixed(1)
         }else{    
-            const total = ((context.team.map((element) => parseInt(element[type][skill]))).reduce((acumulator, element) => acumulator + element))/context.team.length 
+            const total = ((context.team.map((element) => isNaN(element[type][skill]) ? 0 : parseInt(element[type][skill]))).reduce((acumulator, element) => acumulator + element))/context.team.length 
             totalSkill.push({[skill]: total})
             return total.toFixed(1)    
         }

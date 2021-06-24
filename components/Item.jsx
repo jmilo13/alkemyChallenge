@@ -10,12 +10,9 @@ export default function Item(props) {
     const isTeam = component === 'team' ? true : false
     const { image, id, name, biography } = information
 
-    console.log(context.team);
     const handleElement = () => {
-        console.log('caja')
         context.setItem(information)
-        isTeam ? context.setTeam(true) : context.setTeam(false)
-        console.log('click en imagen')
+        // isTeam ? context.setTeam(true) : context.setTeam(false)
         router.push(`/${name}`)
     }
     // const handleClick = (e) => {

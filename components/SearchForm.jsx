@@ -14,7 +14,6 @@ export default function SearchForm() {
     const [data, setData] = useState()
     const handleChange = e => {
         setHeroName(e.target.value)
-        console.log(e.target.value)
     }
     const handleSubmit = async e => {
         e.preventDefault()
@@ -23,7 +22,6 @@ export default function SearchForm() {
         const response = await axios.get(API)
         setData(response.data.results)
         context.setItem(false)
-        console.log(response.data.results)
     }
     return (
         <section className="search-section">

@@ -1,26 +1,33 @@
 import React, { useContext  } from 'react'
 import TeamContext from '@context/TeamContext'
 import { Button } from 'react-bootstrap'
+import { useRouter } from 'next/router'
 import ButtomTeamContainer from '@components/ButtonTeamContainer'
 
 export default function Details () {
     const context = useContext(TeamContext)
-    console.log(context.item)
+    const router = useRouter()
+    
+    const handleClick = (e) => {
+        console.log('redireccion')
+        router.push(`/`)
+    }
 
     const { id, name, image, powerstats, biography, appearance, work} = context.item
     const { alignment, aliases} = biography
     const { combat, durability, intelligence, power, speed, strength } = powerstats
     const physical = Object.values(appearance)
-    if(context.item)
+
+
     return ( 
     <section className="details-section">
         <div className="details-section__container">
             <div className="details-section__header">
                 <h2 className="details-section__name">{name}</h2>
                 <p className="details-section__alignment">{alignment === 'bad'? 'Villano' : 'Héroe'}</p>
-                <ButtomTeamContainer component='team' id={id} data={context.item} type={context.team===true ? 'remove' : 'add'}/>
-                {context.team===true ? <Button variant="danger">Eliminar</Button> :
-                <Button variant="primary">Agregar</Button>}
+                <ButtomTeamContainer component='team' id={id} data={context.item} type={context.team.includes(context.item) ? 'remove' : 'add'}/>
+                <div><Button variant="primary" type="button" onClick={handleClick}> Ir a Equipo</Button></div>
+                {/* <button type="button" onClick={handle}> ir a equipo</button> */}
             </div>
             <img className="details-section__image" src={image.url} alt={name}></img>
             <div className="details-section__skills">
@@ -62,7 +69,7 @@ export default function Details () {
                 content: "";
                 top: 0;
                 bottom: 0;
-                left: 0;
+                left: 3rem;
                 right: 0;
                 background: rgb(0 0 0 / 25%);
             }
