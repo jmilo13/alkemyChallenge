@@ -5,7 +5,6 @@ import TeamContext from '@context/TeamContext'
 
 export default function Team() {
     const context = useContext(TeamContext)
-    console.log(context.team)
 
     useEffect(async () => {
         if(localStorage.getItem('team')===null){

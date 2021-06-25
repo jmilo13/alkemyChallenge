@@ -9,7 +9,6 @@ export default function Details () {
     const router = useRouter()
     
     const handleClick = (e) => {
-        console.log('redireccion')
         router.push(`/`)
     }
 
@@ -18,14 +17,13 @@ export default function Details () {
     const { combat, durability, intelligence, power, speed, strength } = powerstats
     const physical = Object.values(appearance)
 
-
     return ( 
     <section className="details-section">
         <div className="details-section__container">
             <div className="details-section__header">
                 <h2 className="details-section__name">{name}</h2>
                 <p className="details-section__alignment">{alignment === 'bad'? 'Villano' : 'Héroe'}</p>
-                <ButtomTeamContainer component='team' id={id} data={context.item} type={context.team.includes(context.item) ? 'remove' : 'add'}/>
+                <ButtomTeamContainer component='team' id={id} data={context.item} type={context.team.length > 0 && context.team.includes(context.item) ? 'remove' : 'add'}/>
                 <div><Button variant="primary" type="button" onClick={handleClick}> Ir a Equipo</Button></div>
                 {/* <button type="button" onClick={handle}> ir a equipo</button> */}
             </div>

@@ -18,6 +18,7 @@ export default function InfoTeam () {
             return total.toFixed(1)    
         }
     }
+
     useEffect(() => {
         maxSkill = totalSkill.reduce((prev, curr) => {
             return Object.values(prev)[0] > Object.values(curr)[0] ? prev : curr
