@@ -1,4 +1,4 @@
-import React, { useContext, useState } from "react"
+import React, { useContext } from "react"
 import TeamContext from '@context/TeamContext'
 import ButtonTeam from "./ButtonTeam"
 
@@ -9,7 +9,6 @@ export default function ButtomTeamContainer (props) {
     const local = JSON.parse(localStorage.getItem('team'))
     const isTeam = props.component === 'team' ? true : false
     const duplicate = context.team.length > 0 && (context.team.map(element => element.id)).includes(props.data.id)
-console.log(duplicate)
     const handleClick = (e) => {
         console.log('entro al click')
         const good = context.team.length > 0 && (context.team.map(element => element.biography.alignment === 'good' || element.biography.alignment === 'neutral' ? 1 : 0)).reduce((prev, curr) => prev + curr)
@@ -39,6 +38,7 @@ console.log(duplicate)
                 context.setTeam(data)
             }else{
                 console.log('error para ingresar, recuerda...')
+                props.setError(true)
             }
             
             e.stopPropagation()

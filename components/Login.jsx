@@ -83,7 +83,6 @@ export default function Login () {
       </Formik>
       <style jsx>
         {`
-
         `}
       </style>
     </div>

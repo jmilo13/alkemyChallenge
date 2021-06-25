@@ -1,4 +1,4 @@
-import React, { useState, useContext, useEffect } from 'react'
+import React, { useState, useContext } from 'react'
 import axios from 'axios'
 import { Button, Form } from 'react-bootstrap';
 import List from '@components/List'
@@ -12,15 +12,17 @@ export default function SearchForm() {
     const context = useContext(TeamContext)
     const [heroName, setHeroName] = useState('superman')
     const [data, setData] = useState()
+    const [notData, setNotData] = useState('')
     const handleChange = e => {
         setHeroName(e.target.value)
     }
     const handleSubmit = async e => {
         e.preventDefault()
         const API = `${BASE_API}${API_KEY}/search/${heroName}`
-        // const API = 'http://localhost:3000/data'
         const response = await axios.get(API)
+        console.log(response.data.response)
         setData(response.data.results)
+        response.data.response && setNotData('No hay resultados. Prueba con otro nombre')
         context.setItem(false)
     }
     return (
@@ -30,13 +32,17 @@ export default function SearchForm() {
                 <Form.Control className="search-section__input" type="text" onChange={handleChange} />
                 <Button variant="primary" type="submit">Buscar</Button>
             </form>
-            {data &&
+            {data ?
                 <section className="results-section">
                     <List data={data} />
                 </section>
+                : <p className="notResponse">{notData}</p>
             }
             <style jsx>
                 {`
+                .notResponse{
+                    text-align: center;
+                }
                 .search-section {
                 padding: 2rem;
                 }

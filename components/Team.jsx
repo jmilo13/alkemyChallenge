@@ -20,7 +20,10 @@ export default function Team() {
                 <InfoTeam />
                 <List data={context.team} component="team" />
             </div>
-                : <h3>No tienes miembros en tu equipo, busca algunos y súmalos.</h3>
+                : <React.Fragment> 
+                    <h4>No tienes miembros en tu equipo, busca algunos y súmalos</h4>
+                    <p>Son máximo seis (tres heroes y tres villanos) No puedes repetirlos</p>
+                </React.Fragment>
             }
             <style jsx>
                 {`

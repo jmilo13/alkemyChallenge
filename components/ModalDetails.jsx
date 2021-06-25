@@ -1,23 +1,36 @@
-import React, { useContext } from 'react'
+import React, { useContext, useState } from 'react'
 import TeamContext from '@context/TeamContext'
-import { Button } from 'react-bootstrap'
+import ReactDOM from 'react-dom'
+import ButtomTeamContainer from '@components/ButtonTeamContainer'
+import {Alert } from 'react-bootstrap'
 
 export default function Details (props) {
-    const context = useContext(TeamContext)
-    const { isOn } = props
 
-    const { name, image, powerstats, biography, appearance, work} = context.item
+    const [error, setError ] = useState(false)
+    const context = useContext(TeamContext)
+    const {isOn, setIsOn } = props
+    console.log(isOn)
+
+    const handleClick = (e) => {
+        setIsOn(false)
+        e.stopPropagation(e)
+    }
+
+    const { id, name, image, powerstats, biography, appearance, work} = context.item
     const { alignment, aliases} = biography
     const { combat, durability, intelligence, power, speed, strength } = powerstats
     const physical = Object.values(appearance)
     const element =  ( 
     <section className="details-section">
+        
         <div className="details-section__container">
+        <button className= "details-section__close-button" onClick={handleClick}></button>
             <div className="details-section__header">
+                <div>
                 <h2 className="details-section__name">{name}</h2>
                 <p className="details-section__alignment">{alignment === 'bad'? 'Villano' : 'Héroe'}</p>
-                {context.team===true ? <Button variant="danger">Eliminar</Button> :
-                <Button variant="primary">Agregar</Button>}
+                </div>
+                <ButtomTeamContainer setError={setError} component='team' id={id} data={context.item} type={context.team.length > 0 && context.team.includes(context.item) ? 'remove' : 'add'}/>  
             </div>
             <img className="details-section__image" src={image.url} alt={name}></img>
             <div className="details-section__skills">
@@ -42,20 +55,32 @@ export default function Details (props) {
                     <li>Alias: <ul>{aliases.map((item)=> <li key={item}>{item}</li>)}</ul></li>
                 </ul>
             </div>
+            {error&&
+                <Alert variant="danger" onClose={() => setError(false)} dismissible>
+                <Alert.Heading>No puedes agregarlo</Alert.Heading>
+                <p>
+                    Recuerda: Equipo de máximo seis (tres heroes y tres villanos). No puedes repetir.
+                </p>
+                </Alert>
+            } 
         </div>
         <style jsx>
             {`
             .details-section{
+                position: fixed;
+                top: 0;
+                bottom: 0;
+                left: 0;
+                right: 0;
                 display: flex;
                 height: 100vh;
                 padding: 1rem;
                 justify-content: center;
-                align-items: center;
                 margin-left: 3rem;
-                background: url('/images/heroesYVillanos.jpg') center;
+
             }
             .details-section::before{
-                position: absolute;
+                position: fixed;
                 content: "";
                 top: 0;
                 bottom: 0;
@@ -66,7 +91,9 @@ export default function Details (props) {
             .details-section__container{
                 position: relative;
                 display: flex;
-                height: fit-content;
+                max-height: 95vh;
+                overflow: auto;
+                background: rgb(0 0 0 / 77%);
                 flex-wrap: wrap;
                 justify-content: space-evenly;
                 align-items: flex-start;
@@ -78,21 +105,22 @@ export default function Details (props) {
                 border-radius: 1rem;
                 box-shadow: 0 0 7px 0px;
             }
-            .details-section__container::before{
+            .details-section__close-button{
                 position: absolute;
-                content: "";
-                top: 0;
-                bottom: 0;
-                left: 0;
-                right: 0;
-                background: rgb(0 0 0 / 40%);
-                backdrop-filter: blur(5px);
-                border-radius: 1rem;
+                width: 1rem;
+                height: 1rem;
+                right: 1rem;
+                border: none;
+                background: url('/icons/close.svg') center/cover no-repeat;
+                z-index:2
             }
             .details-section__header{
                 width: 100%;
-                text-align: center;
-                z-index: 1;
+                display: flex;
+                flex-wrap: wrap;
+                align-items: center;
+                justify-content: center;
+                            z-index: 1;
             }
             .details-section__container ul{
                 padding-left: 1.5rem;
@@ -110,7 +138,6 @@ export default function Details (props) {
             .details-section__skills{
                 border-top: solid 1px;
                 border-bottom: solid 1px;
-
             }
             .details-section__skills ul{
                 list-style: none;
@@ -119,12 +146,28 @@ export default function Details (props) {
             .details-section__skills img{
                 max-width: 25px;
             }
-            @media (min-width: 530px) {
+            @media (min-width: 565px) {
             .details-section__skills{
                 border: none;
                 }
             .details-section__features{
                 border-top: solid 1px
+            }
+            .details-section__container{
+                height: fit-content;
+                overflow: hidden;
+                background: none;
+            }
+            .details-section__container::before{
+                position: absolute;
+                content: "";
+                top: 0;
+                bottom: 0;
+                left: 0;
+                right: 0;
+                background: rgb(0 0 0 / 40%);
+                backdrop-filter: blur(5px);
+                border-radius: 1rem;
             }
             }
             @media (min-width: 800px) {
@@ -135,7 +178,6 @@ export default function Details (props) {
                 border-top: none;
                 border-left: solid 1px
             }
-            
             }
             `}
         </style>
