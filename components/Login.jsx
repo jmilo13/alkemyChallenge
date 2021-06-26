@@ -1,12 +1,15 @@
 import React, {useContext, useState} from 'react';
-import { Formik } from 'formik';
+import { Formik, ErrorMessage, Field  } from 'formik';
+import {Alert, Button, Form} from 'react-bootstrap'
 import axios from 'axios'
 import UserContext from '@context/UserContext'
-import {Alert, Button , Form} from 'react-bootstrap'
- 
+import TeamContext from '@context/TeamContext';
+
 export default function Login () {
   const context = useContext(UserContext)
+  const teamContext = useContext(TeamContext)
   const [logError, setLogError] = useState(false)
+
   const handleSubmit = async (values, { setSubmitting }) => {
     try{
       const response = await axios.post('http://challenge-react.alkemy.org/', values)
@@ -15,21 +18,28 @@ export default function Login () {
       localStorage.setItem('team', false);
     }catch(error){
       setLogError(true)
-
     }
     setSubmitting(false)
+    teamContext.setTeam(false)
   }
-  const validateEmail = (values) => {
+  
+  const validate = (values) => {
     const errors = {};
     if (!values.email) {
-      errors.email = 'Este campo es requerido';
+      errors.email = 'Este campo es requerido'
     } else if (
       !/^[A-Z0-9._%+-]+@[A-Z0-9.-]+\.[A-Z]{2,}$/i.test(values.email)
     ) {
-      errors.email = 'Introduce un email válido';
+      errors.email = 'Introduce un email válido'
+    }
+    if (!values.password) {
+      errors.password = 'Este campo es requerido'
+    } else if(values.password.length < 5){
+      errors.password = 'La contraseña debe tener mínimo 5 caracteres'
     }
     return errors;
   }
+
   return (
     <div>
       {logError&&
@@ -42,40 +52,39 @@ export default function Login () {
       } 
       <Formik
         initialValues={{ email: '', password: '' }}
-        validate={validateEmail}
+        validate={validate}
         onSubmit={handleSubmit}
       >
         {({
           values,
           errors,
-          touched,
-          handleChange,
           handleSubmit,
-          handleBlur,
           isSubmitting,
         }) => (
           <form onSubmit={handleSubmit}>
             <Form.Label>Email</Form.Label>
-            <Form.Control
-              type="email"
-              name="email"
-              onChange={handleChange}
-              onBlur={handleBlur}
-              value={values.email}
-              placeholder="ejemplo@correo.com"
+            <Field
+              className="form-control" 
+              type="email" 
+              name="email" 
+              value={values.email} 
+              placeholder="ejemplo@correo.com" 
             />
-            {errors.email && touched.email && errors.email}
+            <ErrorMessage name="email">
+              {message => <p className="error">{message}</p>}
+            </ErrorMessage>
             <Form.Label>Contraseña</Form.Label>
-            <Form.Control
+            <Field
+              className="form-control" 
               type="password"
               name="password"
-              onChange={handleChange}
-              onBlur={handleBlur}
               value={values.password}
               placeholder="Ingresa la contraseña"
             />
-            {errors.password && touched.password && errors.password}
-            <Button variant="primary" type="submit" disabled={isSubmitting} className="mt-3">
+            <ErrorMessage name="password">
+              {message => <p className="error">{message}</p>}
+            </ErrorMessage>
+            <Button variant="primary" type="submit" disabled={isSubmitting || errors.password} className="mt-3">
               Iniciar Sesión
             </Button>
           </form>
@@ -83,6 +92,11 @@ export default function Login () {
       </Formik>
       <style jsx>
         {`
+        .error{
+          color: red;
+          width: 100%;
+          font-weight: 700;
+        }
         `}
       </style>
     </div>

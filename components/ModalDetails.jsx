@@ -1,15 +1,13 @@
 import React, { useContext, useState } from 'react'
-import TeamContext from '@context/TeamContext'
 import ReactDOM from 'react-dom'
-import ButtomTeamContainer from '@components/ButtonTeamContainer'
 import {Alert } from 'react-bootstrap'
+import TeamContext from '@context/TeamContext'
+import ButtomTeamContainer from '@components/ButtonTeamContainer'
 
 export default function Details (props) {
-
     const [error, setError ] = useState(false)
     const context = useContext(TeamContext)
     const {isOn, setIsOn } = props
-    console.log(isOn)
 
     const handleClick = (e) => {
         setIsOn(false)
@@ -21,8 +19,7 @@ export default function Details (props) {
     const { combat, durability, intelligence, power, speed, strength } = powerstats
     const physical = Object.values(appearance)
     const element =  ( 
-    <section className="details-section">
-        
+    <section className="details-section"> 
         <div className="details-section__container">
         <button className= "details-section__close-button" onClick={handleClick}></button>
             <div className="details-section__header">
@@ -181,7 +178,7 @@ export default function Details (props) {
             }
             `}
         </style>
-  </section>
+    </section>
     )
     const lugar = document.querySelector('#modal-root')
     return isOn === true && ReactDOM.createPortal(element, lugar)

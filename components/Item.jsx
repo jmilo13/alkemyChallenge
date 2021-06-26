@@ -8,14 +8,16 @@ export default function Item(props) {
     const [error, setError ] = useState(false)
     const [isOn, setIsOn] = useState(false)
     const context = useContext(TeamContext)
+
     const { information, component } = props
     const isTeam = component === 'team' ? true : false
     const { image, id, name, biography } = information
+    
     const handleElement = () => {
-        console.log('oprimio imagen')
         context.setItem(information)
         setIsOn(true)
     }
+
     return (
         <section className='card' key={id} onClick={handleElement}>
             <img className='card__image' src={image.url}/>
@@ -57,7 +59,7 @@ export default function Item(props) {
                         to top,
                         rgba(0, 0, 0, 0.9) 0%,
                         rgba(0, 0, 0, 0) 100%
-                );
+                    );
                     color: #fff;
                 }
                 .card,

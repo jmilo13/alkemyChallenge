@@ -2,6 +2,7 @@ import React from 'react'
 
 function ResultItem (props) {
     const {id, image, name, biography } = props.information
+    
     return (
         <section className='search-card' key={id}>
             <img className='search-card__image' src={image.url} />

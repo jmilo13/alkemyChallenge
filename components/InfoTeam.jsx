@@ -1,8 +1,6 @@
 import React, { useContext, useEffect, useState } from 'react'
 import TeamContext from '@context/TeamContext'
 
-
-
 export default function InfoTeam () {
     const [principal, setPrincipal] = useState('')
     const totalSkill = []

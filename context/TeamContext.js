@@ -10,5 +10,4 @@ export function TeamContextProvider ({children}) {
     </TeamContext.Provider>
 
 }
-
 export default TeamContext

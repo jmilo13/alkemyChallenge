@@ -1,13 +1,14 @@
 import React, {useContext} from 'react'
 import UserContext from '@context/UserContext'
 
-
 export default function Navbar ({children}) {
     const context = useContext(UserContext)
+
     const handleClick = () => {
         localStorage.removeItem('token')
-        context.setToken('')       
+        context.setToken(null)       
     }
+    
     return (
         <header className='header'>
             <div className="header__logo">

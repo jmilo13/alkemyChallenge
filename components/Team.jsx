@@ -1,5 +1,5 @@
 import React, { useContext, useEffect } from 'react'
-import List from './List'
+import List from '@components/List'
 import InfoTeam from '@components/InfoTeam'
 import TeamContext from '@context/TeamContext'
 
@@ -13,8 +13,8 @@ export default function Team() {
         const local = JSON.parse(localStorage.getItem('team'))
         context.setTeam(local)
     }, [])
-    return (
 
+    return (
         <section className="team-section">
             {context.team.length > 0? <div className="team-section__container">
                 <InfoTeam />
