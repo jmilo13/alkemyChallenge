@@ -1,8 +1,14 @@
+:root {
+  --principal: #2e4053;
+}
 * {
   margin: 0;
   padding: 0;
   box-sizing: border-box;
 }
 main {
+  margin-left: 3rem;
+}
+#modal-root {
   margin-left: 3rem;
 }

@@ -1,19 +1,23 @@
 import React, {useContext} from 'react'
 import UserContext from '@context/UserContext'
 
-
-export default function Navbar () {
+export default function Navbar ({children}) {
     const context = useContext(UserContext)
+
     const handleClick = () => {
         localStorage.removeItem('token')
-        context.setToken('')       
+        context.setToken(null)       
     }
+    
     return (
         <header className='header'>
-            <div className="header__logo"></div>
+            <div className="header__logo">
+                <img src="./images/logo.png" alt="logo"/>
+            </div>
             <nav className="header__nav">
                 <button className="header__login-button" onClick={handleClick}></button>
             </nav>
+            {children}
             <style jsx>
                 {`
                 .header {
@@ -36,8 +40,12 @@ export default function Navbar () {
                     color: #fff;
                     font-size: 2.5rem;
                     width: fit-content;
+                    padding: 0.3rem;
                     align-items: flex-start;
                     justify-content: center;
+                }
+                .header__logo img{
+                    width: 100%;
                 }
                 .header__login-button {
                     position: relative;

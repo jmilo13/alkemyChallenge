@@ -1,36 +1,46 @@
-import React, { useState, useEffect } from 'react'
-import axios from 'axios'
-import TeamList from './TeamList'
+import React, { useContext, useEffect } from 'react'
+import List from '@components/List'
+import InfoTeam from '@components/InfoTeam'
+import TeamContext from '@context/TeamContext'
 
-export default function Team () {
-    const [team, setTeam] = useState([])
+export default function Team() {
+    const context = useContext(TeamContext)
 
     useEffect(async () => {
-        console.log('funciona el useEffect')  
-        const api = 'https://rickandmortyapi.com/api/character'
-        const response = await axios.get(api)
-        setTeam(response.data.results)
-    },[])
-    console.log(team)
+        if(localStorage.getItem('team')===null){
+            return console.log('no hay nada en local')
+        }
+        const local = JSON.parse(localStorage.getItem('team'))
+        context.setTeam(local)
+    }, [])
+    
     return (
+
         <section className="team-section">
-            <h1>Tu equipo</h1>
-            {team? <div className="team-section__container"><TeamList data={team}/></div> 
-            : <h3>No tienes miembros en tu equipo, busca algunos y súmalos.</h3>
+            {context.team.length > 0? <div className="team-section__container">
+                <InfoTeam />
+                <List data={context.team} component="team" />
+            </div>
+                : <React.Fragment> 
+                    <h4>No tienes miembros en tu equipo, busca algunos y súmalos</h4>
+                    <p>Son máximo seis (tres heroes y tres villanos) No puedes repetirlos</p>
+                </React.Fragment>
             }
             <style jsx>
                 {`
                 .team-section{
-                    padding: 2rem 1rem;
+                    padding: 2rem;
                     text-align: center;
                 }
                 .team-section__container{
                     display: flex;
                     flex-wrap: wrap;
                     justify-content: center;
+                    max-width: 63rem;
+                    margin: auto;
                 }
                 `}
             </style>
         </section>
-    ) 
+    )
 }

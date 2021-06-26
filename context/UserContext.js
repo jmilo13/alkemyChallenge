@@ -4,6 +4,7 @@ const UserContext = React.createContext({})
 
 export function UserContextProvider ({children}) {
     const [token, setToken] = useState('')
+    
     useEffect(() => {
     setToken(localStorage.getItem('token'))
       }, [])
@@ -12,5 +13,4 @@ export function UserContextProvider ({children}) {
     </UserContext.Provider>
 
 }
-
 export default UserContext
