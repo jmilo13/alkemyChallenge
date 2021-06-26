@@ -33,12 +33,12 @@ export default function Details (props) {
             <div className="details-section__skills">
                 <h3>Habilidades</h3>
                 <ul>
-                    <li><img src="/icons/combat.svg"/><span>Combate:</span> {combat}</li>
-                    <li><img src="/icons/durability.svg"/><span>Resistencia:</span> {durability}</li>
-                    <li><img src="/icons/intelligence.svg"/><span>Inteligencia:</span> {intelligence}</li>
-                    <li><img src="/icons/power.svg"/><span>Poder:</span> {power}</li>
-                    <li><img src="/icons/speed.svg"/><span>Velocidad:</span> {speed}</li>
-                    <li><img src="/icons/strength.svg"/><span>Fuerza:</span> {strength}</li>
+                    <li><img src="/icons/combat.svg" alt=""/><span>Combate:</span> {combat}</li>
+                    <li><img src="/icons/durability.svg" alt=""/><span>Resistencia:</span> {durability}</li>
+                    <li><img src="/icons/intelligence.svg" alt=""/><span>Inteligencia:</span> {intelligence}</li>
+                    <li><img src="/icons/power.svg" alt=""/><span>Poder:</span> {power}</li>
+                    <li><img src="/icons/speed.svg" alt=""/><span>Velocidad:</span> {speed}</li>
+                    <li><img src="/icons/strength.svg" alt=""/><span>Fuerza:</span> {strength}</li>
                 </ul>
             </div>
             <div className="details-section__features">

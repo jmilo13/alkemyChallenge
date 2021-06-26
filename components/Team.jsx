@@ -13,8 +13,9 @@ export default function Team() {
         const local = JSON.parse(localStorage.getItem('team'))
         context.setTeam(local)
     }, [])
-
+    
     return (
+
         <section className="team-section">
             {context.team.length > 0? <div className="team-section__container">
                 <InfoTeam />

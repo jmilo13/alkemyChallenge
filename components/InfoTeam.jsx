@@ -28,25 +28,25 @@ export default function InfoTeam () {
         <section className="characters">
             <div className="characters__container-header">
                 <h1 className="characters__title">Tu equipo</h1>
-                <img className="characters__principal-skill" src={`/icons/${principal}.svg`}/>
+                <img className="characters__principal-skill" src={`/icons/${principal}.svg`} alt={principal}/>
             </div>
-            <img/>
+    
             <div className="characters__container">
                 <h2>Habilidades</h2>
                 <ul>
-                    <li><img src="/icons/combat.svg"/><span>Combate:</span> {getTotal('powerstats', 'combat')}</li>
-                    <li><img src="/icons/durability.svg"/><span>Resistencia:</span> {getTotal('powerstats', 'durability')}</li>
-                    <li><img src="/icons/intelligence.svg"/><span>Inteligencia:</span> {getTotal('powerstats', 'intelligence')}</li>
-                    <li><img src="/icons/power.svg"/><span>Poder:</span> {getTotal('powerstats', 'power')}</li>
-                    <li><img src="/icons/speed.svg"/><span>Velocidad:</span> {getTotal('powerstats', 'speed')}</li>
-                    <li><img src="/icons/strength.svg"/><span>Fuerza:</span> {getTotal('powerstats', 'strength')}</li>
+                    <li><img src="/icons/combat.svg" alt=""/><span>Combate:</span> {getTotal('powerstats', 'combat')}</li>
+                    <li><img src="/icons/durability.svg" alt=""/><span>Resistencia:</span> {getTotal('powerstats', 'durability')}</li>
+                    <li><img src="/icons/intelligence.svg" alt=""/><span>Inteligencia:</span> {getTotal('powerstats', 'intelligence')}</li>
+                    <li><img src="/icons/power.svg" alt=""/><span>Poder:</span> {getTotal('powerstats', 'power')}</li>
+                    <li><img src="/icons/speed.svg" alt=""/><span>Velocidad:</span> {getTotal('powerstats', 'speed')}</li>
+                    <li><img src="/icons/strength.svg" alt=""/><span>Fuerza:</span> {getTotal('powerstats', 'strength')}</li>
                 </ul>
             </div>
             <div className="characters__container">
             <h2>Características</h2>
                 <ul>
-                    <li><img src="/icons/weight.svg"/><span>Peso:</span> {getTotal('appearance', 'weight', 1)}</li>
-                    <li><img src="/icons/height.svg"/><span>Altura:</span> {getTotal('appearance', 'height', 1)}</li>
+                    <li><img src="/icons/weight.svg" alt=""/><span>Peso:</span> {getTotal('appearance', 'weight', 1)}</li>
+                    <li><img src="/icons/height.svg" alt=""/><span>Altura:</span> {getTotal('appearance', 'height', 1)}</li>
                 </ul>
             </div>
             <style jsx>

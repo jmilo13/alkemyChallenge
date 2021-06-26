@@ -23,7 +23,8 @@ export default function Home() {
     else {
         return (
             <React.Fragment>
-                {teamContext.team.leangth === undefined & context.token != undefined ? <div className="loading"><img src="/images/loading.gif"/></div> : <Welcome />}
+                {teamContext.team.leangth === undefined & context.token != undefined ? <div className="loading">
+                    <img src="/images/loading.gif" alt=""/></div> : <Welcome />}
                 <style jsx>
                     {`
                     .loading{

@@ -12,7 +12,7 @@ export default function Navbar ({children}) {
     return (
         <header className='header'>
             <div className="header__logo">
-                <img src="./images/logo.png" />
+                <img src="./images/logo.png" alt="logo"/>
             </div>
             <nav className="header__nav">
                 <button className="header__login-button" onClick={handleClick}></button>

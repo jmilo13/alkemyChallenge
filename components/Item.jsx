@@ -20,7 +20,13 @@ export default function Item(props) {
 
     return (
         <section className='card' key={id} onClick={handleElement}>
-            <img className='card__image' src={image.url}/>
+            <img 
+                className='card__image' 
+                src={image.url}
+                alt={name}
+                width= "100%"
+                height= "100%"
+                />
             <div className='card__button-container'>
                 <ButtomTeamContainer setError={setError} component="team" id={id} type={isTeam ? 'remove' : 'add'} data={information}/>
             </div>
@@ -45,10 +51,6 @@ export default function Item(props) {
                 }
                 .card:hover {
                     transform: scale(1.05);
-                }
-                .card__image {
-                    width: 100%;
-                    height: 100%;
                 }
                 .card__details {
                     position: absolute;

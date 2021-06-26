@@ -5,7 +5,7 @@ function ResultItem (props) {
     
     return (
         <section className='search-card' key={id}>
-            <img className='search-card__image' src={image.url} />
+            <img className='search-card__image' src={image.url} alt={name} />
             <div className='search-card__details'>
                 <h2 className='search-card__details--name'>{name}</h2>
                 <p className='search-card__details--aligment'>{biography.alignment === 'bad'? 'Villano' : 'Héroe'}</p>
