@@ -1,7 +1,6 @@
 import React, {useContext, useState} from 'react';
 import { Formik, ErrorMessage, Field  } from 'formik';
 import {Alert, Button, Form} from 'react-bootstrap'
-import axios from 'axios'
 import UserContext from '@context/UserContext'
 import TeamContext from '@context/TeamContext';
 
@@ -10,17 +9,22 @@ export default function Login () {
   const teamContext = useContext(TeamContext)
   const [logError, setLogError] = useState(false)
 
-  const handleSubmit = async (values, { setSubmitting }) => {
-    try{
-      const response = await axios.post('http://challenge-react.alkemy.org/', values)
-      localStorage.setItem('token', response.data.token);
-      context.setToken(response.data.token)
+  const handleSubmit = (values, { setSubmitting }) => {
+    const email = values.email
+    const password = values.password
+    const isValid = email === 'challenge@alkemy.org' && password === 'react'
+    if(isValid){
+      const token = 'shs456hjk1223NN7890'
+      localStorage.setItem('token', token);
+      context.setToken(token)
       localStorage.setItem('team', false);
-    }catch(error){
+    }
+    else{
+      console.log('Credenciales invalidas')
       setLogError(true)
     }
     setSubmitting(false)
-    teamContext.setTeam(false)
+    teamContext.setTeam(false)    
   }
   
   const validate = (values) => {
