@@ -2,6 +2,8 @@
 
 Este proyecto consiste en un sitio web que recupera información de diferentes héroes y villanos de Superhero API. Permite consultar la imagen, habilidades y características de cada uno, agregarlos a un equipo conformado por seis integrantes (3 villanos y 3 héros) y eliminarlos del mismo. El sitio requiere autenticación con solicitud a una API de Alkemy.
 
+> Puedes ver el deploy del proyecto en https://alkemy-challenge-oogcoin6m-jmilo13.vercel.app/ En este caso se cambia la autenticación a la API dado que no utiliza protocolo HTTPS lo que impide realizar la petición.
+
 ## Comenzando 🚀
 
 Para ver el proyecto clona o descarga el repositorio e instala las dependencias. En mi caso utilice NPM como gestor de dependencias.
