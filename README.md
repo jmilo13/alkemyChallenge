@@ -4,6 +4,11 @@ Este proyecto consiste en un sitio web que recupera información de diferentes h
 
 > Puedes ver el deploy del proyecto en https://alkemy-challenge-oogcoin6m-jmilo13.vercel.app/ En este caso se cambia la autenticación a la API dado que no utiliza protocolo HTTPS lo que impide realizar la petición.
 
+## Credenciales 🔑
+
+- usuario: challenge@alkemy.org
+- clave: react
+
 ## Comenzando 🚀
 
 Para ver el proyecto clona o descarga el repositorio e instala las dependencias. En mi caso utilice NPM como gestor de dependencias.
@@ -18,7 +23,7 @@ Luego ejecuta el comando de desarrollo que te permitirá utilizar un servidor lo
 npm run dev
 ```
 
-Y listo, ya puedes probarla!!!
+Y listo, ya puedes probarla!!! Utiliza las credenciales para acceder.
 
 ## Construido con 🛠️
 
