@@ -4,18 +4,14 @@ import {Alert, Button, Form} from 'react-bootstrap'
 import UserContext from '@context/UserContext'
 import TeamContext from '@context/TeamContext';
 
-export default function Login (props) {
-  console.log(props)
+export default function Login () {
   const context = useContext(UserContext)
   const teamContext = useContext(TeamContext)
   const [logError, setLogError] = useState(false)
 
   const handleSubmit = (values, { setSubmitting }) => {
     const email = process.env.NEXT_PUBLIC_EMAIL
-    console.log(email)
     const password = process.env.NEXT_PUBLIC_PASSWORD
-    console.log(password)
-    debugger
     const isValid = email === 'challenge@alkemy.org' && password === 'react'
     if(isValid){
       const token = 'shs456hjk1223NN7890'
@@ -108,15 +104,4 @@ export default function Login (props) {
       </style>
     </div>
   )
-}
-
-export async function getServerSideProps () {
-  const ema = process.env.EMAIL
-  console.log(process.env.EMAIL)
-  console.log('derver')
-  return {
-    props: {
-    una: 'una'
-  }
-}
 }
